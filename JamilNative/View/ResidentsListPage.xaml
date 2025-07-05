@@ -1,0 +1,104 @@
+﻿<Page
+    x:Class="JamilNative.View.ResidentsListPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:JamilNative.View"
+    xmlns:ut="using:Uno.Themes"
+    xmlns:utu="using:Uno.Toolkit.UI"
+    xmlns:vm="using:JamilNative.ViewModel"
+    xmlns:uen="using:Uno.Extensions.Navigation.UI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    >
+<!---->
+    <Page.DataContext>
+    <vm:ResidentsListViewModel/>
+    </Page.DataContext>
+
+    <Grid utu:SafeArea.Insets="VisibleBounds">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Residents in the Estate" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center"
+                   Margin="8"/>
+
+            <TextBox Width="150" HorizontalAlignment="Left" Grid.Row="1" Margin="8" Height="2" PlaceholderText="Search">
+                <!--ut:ControlExtensions.Icon>
+                    <PathIcon Data="{StaticResource Search}"/>
+                </ut:ControlExtensions.Icon-->
+            </TextBox>
+
+        <Button Content="Residents" uen:Navigation.Request="AddResidents" Grid.Row="1"
+                    HorizontalAlignment="Right" Margin="8" Width="150">
+                <ut:ControlExtensions.Icon>
+                <PathIcon Data="{StaticResource Add}" />
+                </ut:ControlExtensions.Icon>
+            </Button>
+
+        <Button Grid.Row="1" HorizontalAlignment="Center"
+                Command="{Binding RetrieveTenantDetailsCommand}" CornerRadius="35" Width="60">
+            <ut:ControlExtensions.Icon>
+                <PathIcon Data="{StaticResource EyeView}"/>
+            </ut:ControlExtensions.Icon>
+        </Button>
+
+        <!--Button Content="Views" HorizontalAlignment="Center" Grid.Row="1" Command="{Binding RetrieveTenantDetailsCommand}"/-->
+
+        <!--Diagnostic text-->
+        <!--, StringFormat='Items Loaded: {0}'}"-->
+        <TextBlock Text="{Binding TenantData.Count}"
+                   Grid.Row="2"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   Margin="10 8"
+                   FontSize="16"
+                   FontWeight="SemiBold" />
+
+
+        <!--Use Refresh container-->
+        <RefreshContainer x:Name="refreshContainer" Grid.Row="3" >
+            <ListView ItemsSource="{Binding TenantData}"  Margin="9 2 6 0" uen:Navigation.Request="ViewResidents">
+
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <ItemsStackPanel Orientation="Vertical" />
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+
+                            <Grid Margin="10 5 5 0" BorderBrush="HotPink" BorderThickness=".5" CornerRadius="5"
+                          Background="{ThemeResource OnSecondaryColor}" Padding="8">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Orientation="Horizontal" Spacing="5">
+                                    <TextBlock Text="{Binding FirstName}" FontWeight="SemiBold" FontSize="18"/>
+                                    <TextBlock Text="{Binding LastName}"  FontWeight="SemiBold" FontSize="18"/>
+                                </StackPanel>
+                                <TextBlock Text="{Binding TdHouse}"  FontWeight="SemiBold" FontSize="18" Grid.Column="1"
+                                   Grid.Row="0" HorizontalAlignment="Right"/>
+
+                            </Grid>
+
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                </ListView>
+        </RefreshContainer>
+    </Grid>
+</Page>

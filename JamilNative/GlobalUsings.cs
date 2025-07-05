@@ -1,0 +1,15 @@
+﻿global using System.Collections.Immutable;
+global using CommunityToolkit.Mvvm.ComponentModel;
+global using CommunityToolkit.Mvvm.Input;
+global using JamilNative.DataContracts;
+global using JamilNative.DataContracts.Serialization;
+global using JamilNative.Models;
+global using JamilNative.Presentation;
+global using JamilNative.Services.Caching;
+global using JamilNative.Services.Endpoints;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Hosting;
+global using Microsoft.Extensions.Localization;
+global using Microsoft.Extensions.Logging;
+global using Microsoft.Extensions.Options;
+global using ApplicationExecutionState = Windows.ApplicationModel.Activation.ApplicationExecutionState;

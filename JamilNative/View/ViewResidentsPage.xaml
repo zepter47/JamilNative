@@ -1,0 +1,67 @@
+﻿<Page
+    x:Class="JamilNative.View.ViewResidentsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:JamilNative.View"
+    xmlns:ut="using:Uno.Themes"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:utu="using:Uno.Toolkit.UI"
+    xmlns:vm="using:JamilNative.ViewModel"
+    xmlns:uen="using:Uno.Extensions.Navigation.UI"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.DataContext>
+        <vm:ViewResidentsViewModel/>
+    </Page.DataContext>
+
+    <Grid utu:SafeArea.Insets="VisibleBounds">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!--Page Title-->
+        <TextBlock Text="Resident Details" Style="{StaticResource TitleText}" Grid.ColumnSpan="2" />
+
+        <!--back Button-->
+        <Button  HorizontalAlignment="Left" Background="Transparent"
+                    uen:Navigation.Request="-">
+            <ut:ControlExtensions.Icon>
+                <PathIcon Data="{StaticResource Back_Arrow}" Foreground="{ThemeResource ErrorColor}"/>
+            </ut:ControlExtensions.Icon>
+        </Button>
+
+
+        <!--Left side-->
+        <StackPanel Spacing="5" Orientation="Vertical" Grid.Row="2" Margin="10 15">
+            <TextBlock  Text="First Name:"/>
+            <TextBlock  Text="Last Name:"/>
+            <TextBlock  Text="House No.:"/>
+            <TextBlock Text="NIN Number:"/>
+            <TextBlock Text="NOK Name:"/>
+            <TextBlock Text="NOK Relationship:"/>
+            <TextBlock Text="NOK Phone No.:"/>
+        </StackPanel>
+        
+        <!--Right side-->
+        <StackPanel Spacing="5" Orientation="Vertical" Grid.Column="1" Grid.Row="2" Margin="10 15">
+            <TextBlock  Text="{Binding TenantDetails.FirstName}"/>
+            <TextBlock  Text="{Binding TenantDetails.LastName}"/>
+            <TextBlock  Text="{Binding TenantDetails.TdHouse}"/>
+            <TextBlock  Text="{Binding TenantDetails.NinNumber}"/>
+            <TextBlock  Text="{Binding TenantDetails.NextofkinName}"/>
+            <TextBlock  Text="{Binding TenantDetails.TdNokRelationship}"/>
+            <TextBlock  Text="{Binding TenantDetails.NokPhonenumber}"/>
+        </StackPanel>
+
+    </Grid>
+</Page>

@@ -1,0 +1,107 @@
+﻿<Page
+    x:Class="JamilNative.View.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:JamilNative.View"
+    xmlns:Controls="using:CommunityToolkit.WinUI.Controls"
+    xmlns:utu="using:Uno.Toolkit.UI"
+    xmlns:ut="using:Uno.Themes"
+    xmlns:vm="using:JamilNative.ViewModel"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.DataContext>
+        <vm:SettingsViewModel/>
+    </Page.DataContext>
+
+    <Grid utu:SafeArea.Insets="VisibleBounds">
+
+        <StackPanel Spacing="5" >
+
+            <Controls:SettingsCard Header="App Theme" Description="Dark and Light themes" Margin="0,40,0,0">
+                <Controls:SettingsCard.HeaderIcon>
+                    <PathIcon Data="{StaticResource Themes}"/>
+                </Controls:SettingsCard.HeaderIcon>
+
+                        <ToggleButton Style="{StaticResource MaterialIconToggleButtonStyle}" HorizontalAlignment="Right">
+                            <PathIcon Data="{StaticResource Moon}"/>
+
+                            <ut:ControlExtensions.AlternateContent>
+                                <PathIcon Data="{StaticResource Sun}"/>
+                            </ut:ControlExtensions.AlternateContent>
+                        </ToggleButton>
+            </Controls:SettingsCard>
+
+
+            <!--Addition of mar-ital Status-->
+            <Controls:SettingsCard Header="Marital Status" Description="Adding the statuses"
+                                   utu:CommandExtensions.Command="{Binding GoToMaritalSettingCommand}">
+                <Controls:SettingsCard.HeaderIcon>
+                    <PathIcon Data="{StaticResource Human_Que}"/>
+                </Controls:SettingsCard.HeaderIcon>
+            </Controls:SettingsCard>
+            
+            <!--Addition of NOK Relationship-->
+            <Controls:SettingsCard  Header="NOK Relationship" Description="Adding Relationship">
+                <Controls:SettingsCard.HeaderIcon>
+                    <PathIcon Data="{StaticResource Human_Rship}"/>
+                </Controls:SettingsCard.HeaderIcon>
+            </Controls:SettingsCard>
+
+
+                    <Expander Header="Add Relationship" HorizontalContentAlignment="Stretch" ExpandDirection="Down"
+                              HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0 -8 0 0">
+                        <Expander.Content>
+                            <Grid>
+                                <StackPanel Spacing="5" Orientation="Vertical">
+                                    <TextBox Text="{Binding Relationship, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                             Header="Relationship" />
+                                    <Button Content="Add" Command="{Binding PostRshipCommand}" HorizontalAlignment="Stretch">
+                                        <ut:ControlExtensions.Icon>
+                                            <PathIcon Data="{StaticResource Add}"/>
+                                        </ut:ControlExtensions.Icon>
+                                    </Button>
+                                </StackPanel>
+                            </Grid>
+                        </Expander.Content>
+                    </Expander>
+
+
+            <!--Addition of House Number-->
+            <Controls:SettingsCard Header="House Number" Description="Adding the House">
+                <Controls:SettingsCard.HeaderIcon>
+                    <PathIcon Data="{StaticResource HomeCity}"/>
+                </Controls:SettingsCard.HeaderIcon>
+            </Controls:SettingsCard>
+
+
+            <Expander  HorizontalContentAlignment="Stretch"  ExpandDirection="Down"
+                              HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0 -8 0 0">
+                <Expander.Header>
+                    <TextBlock Text="Add House Number" HorizontalAlignment="Center"/>
+                </Expander.Header>
+
+                <Expander.Content>
+                    <StackPanel Spacing="5" Orientation="Vertical">
+                        <TextBox Text="{Binding House, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                             Header="House" HorizontalAlignment="Stretch"/>
+                        <Button Content="House" Command="{Binding AddHouseNumberCommand}" HorizontalAlignment="Stretch">
+                            <ut:ControlExtensions.Icon>
+                                <PathIcon Data="{StaticResource Add}"/>
+                            </ut:ControlExtensions.Icon>
+                        </Button>
+                    </StackPanel>
+                </Expander.Content>
+
+
+            </Expander>
+
+
+
+
+        </StackPanel>
+
+    </Grid>
+</Page>
