@@ -31,7 +31,7 @@ namespace JamilNative.ViewModel.subSettingsVM
 
 
         [RelayCommand(CanExecute = nameof(CanAddMarital))]
-        private async Task PostMaritalStatus(MaritalStatus status)
+        private async Task PostMaritalStatus()
         {
             try
             {

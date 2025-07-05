@@ -96,6 +96,7 @@ public partial class App : Application
                     services.AddTransient<ViewResidentsViewModel>();
                     services.AddTransient<SettingsViewModel>();
                     services.AddTransient<MaritalSettingsViewModel>();
+                    services.AddTransient<HouseSettingsViewModel>();
                     services.AddSingleton<IWeatherCache, WeatherCache>();
 
 
@@ -125,7 +126,8 @@ public partial class App : Application
             new ViewMap<AddResidentsPage, AddResidentsViewModel>(),
             new ViewMap<ResidentsListPage, ResidentsListViewModel>(),
             new ViewMap<MaritalSettingsPage, MaritalSettingsViewModel>(),
-            new DataViewMap<ViewResidentsPage, ViewResidentsViewModel, TenantDetails>()
+            new DataViewMap<ViewResidentsPage, ViewResidentsViewModel, TenantDetails>(),
+            new ViewMap<HouseSettingsPage, HouseSettingsViewModel>()
         );
 
         routes.Register(
@@ -145,6 +147,7 @@ public partial class App : Application
                     new("AddResidents", View: views.FindByViewModel<AddResidentsViewModel>()),
                     new("ViewResidents", View: views.FindByViewModel<ViewResidentsViewModel>()),
                     new("MaritalSettings", View: views.FindByViewModel<MaritalSettingsViewModel>()),
+                    new("HouseSettings", View: views.FindByViewModel<HouseSettingsViewModel>()),
 
 
                     //new ("Second", View: views.FindByViewModel<SecondViewModel>()),

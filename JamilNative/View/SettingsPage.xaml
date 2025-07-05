@@ -70,34 +70,12 @@
 
 
             <!--Addition of House Number-->
-            <Controls:SettingsCard Header="House Number" Description="Adding the House">
+            <Controls:SettingsCard Header="House Number" Description="Adding the House"
+                                   utu:CommandExtensions.Command="{Binding GoToHouseSettingCommand}">
                 <Controls:SettingsCard.HeaderIcon>
                     <PathIcon Data="{StaticResource HomeCity}"/>
                 </Controls:SettingsCard.HeaderIcon>
             </Controls:SettingsCard>
-
-
-            <Expander  HorizontalContentAlignment="Stretch"  ExpandDirection="Down"
-                              HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0 -8 0 0">
-                <Expander.Header>
-                    <TextBlock Text="Add House Number" HorizontalAlignment="Center"/>
-                </Expander.Header>
-
-                <Expander.Content>
-                    <StackPanel Spacing="5" Orientation="Vertical">
-                        <TextBox Text="{Binding House, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                             Header="House" HorizontalAlignment="Stretch"/>
-                        <Button Content="House" Command="{Binding AddHouseNumberCommand}" HorizontalAlignment="Stretch">
-                            <ut:ControlExtensions.Icon>
-                                <PathIcon Data="{StaticResource Add}"/>
-                            </ut:ControlExtensions.Icon>
-                        </Button>
-                    </StackPanel>
-                </Expander.Content>
-
-
-            </Expander>
-
 
 
 
