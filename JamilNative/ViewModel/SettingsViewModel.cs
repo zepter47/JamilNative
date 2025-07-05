@@ -21,11 +21,6 @@ namespace JamilNative.ViewModel
         [NotifyCanExecuteChangedFor(nameof(PostRshipCommand))]
         private string? _relationship;
 
-        [ObservableProperty]
-        [Required(ErrorMessage ="Please enter house Number")]
-        [NotifyDataErrorInfo]
-        //[NotifyCanExecuteChangedFor(nameof(AddHouseNumberCommand))]
-        private string? _house;
 
         public SettingsViewModel() { }
 
@@ -60,38 +55,6 @@ namespace JamilNative.ViewModel
             Relationship = string.Empty;
         }
 
-        [RelayCommand(CanExecute = nameof(CanAddHouse))]
-        private async Task AddHouseNumber()
-        {
-            ContentDialogResult result = await HelperDialog.ShowYesNoDialog("Inquiry", "Would you like to add house", "OK", "NO");
-
-            if(result == ContentDialogResult.Primary)
-            {
-                    try
-                    {
-                        await _native.AddHouseNumber(new House { HouseNumber = House });
-                        ClearHouse();
-
-                        await HelperDialog.ShowOKDialog("Api Success", "House Addition Successful");
-
-                    }
-                    catch (ApiException ex)
-                    {
-
-                        await HelperDialog.ShowApiErrorMessage("API Error", "Addition of House Failed", "OK", ex);
-                    }
-            }
-
-            if(result == ContentDialogResult.Secondary)
-            {
-                return;
-            }
-        }
-
-        private void ClearHouse()
-        {
-            House = string.Empty;
-        }
 
 
         private bool CanAddRelationship()
@@ -99,16 +62,18 @@ namespace JamilNative.ViewModel
             return !HasErrors;
         }
 
-        private bool CanAddHouse()
-        {
-            return !HasErrors;
-        }
 
         //navigating to the maritalsettingsPage
         [RelayCommand]
         private async Task GoToMaritalSetting()
         {
             await _navigation.NavigateRouteAsync(this,"MaritalSettings");
+        }
+
+        [RelayCommand]
+        private async Task GoToHouseSetting()
+        {
+            await _navigation.NavigateRouteAsync(this, "HouseSettings");
         }
 
     }

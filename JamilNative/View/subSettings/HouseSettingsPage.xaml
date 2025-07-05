@@ -1,0 +1,52 @@
+﻿<Page
+    x:Class="JamilNative.View.subSettings.HouseSettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:JamilNative.View.subSettings"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ut="using:Uno.Themes"
+    xmlns:uen="using:Uno.Extensions.Navigation.UI"
+    xmlns:vm="using:JamilNative.ViewModel.subSettingsVM"
+    xmlns:utu="using:Uno.Toolkit.UI"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.DataContext>
+        <vm:HouseSettingsViewModel/>
+    </Page.DataContext>
+
+    <Grid utu:SafeArea.Insets="VisibleBounds">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Button  HorizontalAlignment="Left" Background="Transparent"
+                    uen:Navigation.Request="-">
+            <ut:ControlExtensions.Icon>
+                <PathIcon Data="{StaticResource Back_Arrow}" Foreground="{ThemeResource ErrorColor}"/>
+            </ut:ControlExtensions.Icon>
+        </Button>
+
+        <TextBlock Text="House Settings" Style="{StaticResource TitleText}"
+                   HorizontalAlignment="Center" />
+
+        <TextBlock Text="Add House Number" HorizontalAlignment="Left" Grid.Row="1" FontSize="15" Margin="15 0"
+                   FontWeight="SemiBold" />
+
+        <StackPanel Spacing="5" Orientation="Vertical" Grid.Row="2" Margin="15 15">
+            <TextBox Text="{Binding House, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                             Header="House" HorizontalAlignment="Stretch"/>
+            <Button Content="House" Command="{Binding AddHouseNumberCommand}" HorizontalAlignment="Stretch">
+                <ut:ControlExtensions.Icon>
+                    <PathIcon Data="{StaticResource Add}"/>
+                </ut:ControlExtensions.Icon>
+            </Button>
+        </StackPanel>
+
+
+
+    </Grid>
+</Page>
